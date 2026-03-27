@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý TTGShop</title>
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/admin.css">
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            <!-- Sidebar -->
+            <div class="wrap-slidebar">
+                <div class="wrap-logo">
+                    <div class="logo">
+                        <a href="./home.html">
+                            <img src="assets/img/product/pc/logo.webp" alt="">
+                        </a>
+                    </div>
+                    <div class="close" id="close-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="slidebar">
+                    <a href="#" id="user-management">
+                        <i class="fa-solid fa-user"></i>
+                        <h2>Quản lý người dùng</h2>
+                    </a>
+                    <a href="#" id="product-management">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <h2>Quản lý sản phẩm</h2>
+                    </a>
+                    <a href="#" id="brand-management">
+                        <i class="fa-solid fa-ring"></i>
+                        <h2>Quản lý thương hiệu</h2>
+                    </a>
+                    <a href="#" id="cate-management">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h2>Quản lý danh mục</h2>
+                    </a>
+                    <a href="#" id="order-management">
+                        <i class="fa-solid fa-receipt"></i>
+                        <h2>Quản lý đơn hàng</h2>
+                    </a>
+                    <a href="#" id="logout-btn">
+                        <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i>
+                        <h2>Đăng xuất</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="admin-info">
+                <img class="img-admin" src="./assets/img/user/userdefault.webp" alt="">
+                <h1>TTGShop</h1>
+            </div>
+            <!-- Main Content -->
+            <div class="main-content" id="main-content">
+                <h1>Chào mừng đến TTGShop</h1>
+                <p>Chọn một mục bên trái để bắt đầu quản lý.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+function loadContent(page) {
+    fetch(page)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('main-content').innerHTML = html;
+            if (page === './quanlynguoidung.html') {
+                initUserManagement();
+            }else if (page === './quanlydanhmuc.html') {
+                initCateManagement();
+            }
+            else if (page === './quanlythuonghieu.html'){
+                initBrandManagement();
+            }
+            else if (page === './quanlysanpham.html'){
+                initProductManagement();
+            }
+            else if (page === './quanlydonhang.html') {
+                initOrderManagement();
+            }
+        })
+        .catch(error => console.error('Error loading content:', error));
+}
+function generateId() {
+        return crypto.randomUUID();
+    }
+function initUserManagement() {
+    const addButton = document.getElementById('open-add-modal');
+    const modal = document.getElementById('user-modal');
+    const closeModal = document.getElementById('close-modal');
+    const cancelModal = document.getElementById('cancel-modal');
+    const saveButton = document.querySelector('.btn-save');
+    const userTable = document.getElementById('user-table');
+    const avatarUpload = document.getElementById('avatar-upload');
+    const avatarPreview = document.getElementById('avatar-preview');
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let editMode = false;
+    let editingUserId = null;
+
+    function renderUserTable() {
+        userTable.innerHTML = '';
+        users.forEach(user => {
+            const row = `
+                <tr>
+                    <td><img src="${user.avatar}" alt="Avatar" class="avatar"></td>
+                    <td>${user.id}</td>
+                    <td>${user.username}</td>
+                    <td>${user.password}</td>
+                    <td>${user.fullname}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <div class="btn-space">
+                            <button class="btn-edit" data-id="${user.id}">Sửa</button>
+                            <button class="btn-delete" data-id="${user.id}">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            userTable.insertAdjacentHTML('beforeend', row);
+        });
+
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', () => editUser(btn.dataset.id));
+        });
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', () => deleteUser(btn.dataset.id));
+        });
+    }
+
+    function isUsernameExist(username) {
+        return users.some(user => user.username === username);
+    }
+
+    function isEmailExist(email) {
+        return users.some(user => user.email === email);
+    }
+
+    function saveUser() {
+        const userId = editMode ? editingUserId : generateId();
+        const username = document.getElementById('username').value;
+        const fullname = document.getElementById('fullname').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const role = document.getElementById('role').value;
+        const password = document.getElementById('password').value;
+        const avatar = avatarPreview.src || './assets/img/user/userdefault.webp';
+
+        if (!username || !email) {
+            alert('Vui lòng nhập đầy đủ thông tin bắt buộc.');
+            return;
+        }
+
+        if (isUsernameExist(username) && (!editMode || users.find(user => user.username === username && String(user.id) !== String(editingUserId)))) {
+            alert('Username đã tồn tại.');
+            return;
+        }
+
+        if (isEmailExist(email) && (!editMode || users.find(user => user.email === email && String(user.id) !== String(editingUserId)))) {
+            alert('Email đã tồn tại.');
+            return;
+        }
+
+        if (editMode) {
+            const user = users.find(user => String(user.id) === String(editingUserId));
+            user.fullname = fullname;
+            user.email = email;
+            user.phone = phone;
+            user.role = role;
+            user.avatar = avatar;
+            if (password) {
+                user.password = password;
+            }
+        } else {
+            users.push({
+                id: userId,
+                username,
+                fullname,
+                email,
+                phone,
+                role,
+                password,
+                avatar
+            });
+        }
+
+        localStorage.setItem('users', JSON.stringify(users));
+        renderUserTable();
+        modal.style.display = 'none';
+    }
+
+    function editUser(id) {
+        // So sánh ID bằng cách chuyển đổi sang string để tránh lỗi kiểu dữ liệu
+        const user = users.find(user => String(user.id) === String(id));
+        if (!user) {
+            alert('Không tìm thấy người dùng!');
+            return;
+        }
+
+        document.getElementById('user-id').value = user.id;
+        document.getElementById('username').value = user.username;
+        document.getElementById('username').disabled = true;
+        document.getElementById('fullname').value = user.fullname;
+        document.getElementById('email').value = user.email;
+        document.getElementById('phone').value = user.phone;
+        document.getElementById('role').value = user.role;
+        document.getElementById('password').value = '';
+        avatarPreview.src = user.avatar;
+        avatarPreview.style.display = 'block';
+
+        editMode = true;
+        editingUserId = id;
+        modal.style.display = 'flex';
+    }
+
+    function deleteUser(id) {
+        if (confirm('Bạn có chắc muốn xóa người dùng này?')) {
+            // Không cho phép xóa chính mình nếu đang đăng nhập
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser && String(currentUser.id) === String(id)) {
+                alert('Bạn không thể xóa tài khoản của chính mình!');
+                return;
+            }
+            
+            // So sánh ID bằng cách chuyển đổi sang string để tránh lỗi kiểu dữ liệu
+            users = users.filter(user => String(user.id) !== String(id));
+            localStorage.setItem('users', JSON.stringify(users));
+            renderUserTable();
+            alert('Xóa người dùng thành công!');
+        }
+    }
+
+    renderUserTable();
+
+    addButton.addEventListener('click', () => {
+        document.getElementById('user-form').reset();
+        avatarPreview.src = './assets/img/user/userdefault.webp';
+        avatarPreview.style.display = 'block';
+        document.getElementById('username').disabled = false;
+        editMode = false;
+        modal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    cancelModal.addEventListener('click', () => modal.style.display = 'none');
+
+    avatarUpload.addEventListener('change', () => {
+        const file = avatarUpload.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                avatarPreview.src = e.target.result;
+                avatarPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            avatarPreview.src = './assets/img/user/userdefault.webp';
+            avatarPreview.style.display = 'block';
+        }
+    });
+
+    saveButton.addEventListener('click', saveUser);
+    console.log(users)
+}
+
+function initCateManagement() {
+    const addButton = document.getElementById('open-add-modal');
+    const modal = document.getElementById('cate-modal');
+    const closeModal = document.getElementById('close-modal');
+    const cancelModal = document.getElementById('cancel-modal');
+    const saveButton = document.querySelector('.btn-save');
+    const cateTable = document.getElementById('cate-table');
+
+    let cates = JSON.parse(localStorage.getItem('cates')) || [];
+    let editMode = false;
+    let editingCateId = null;
+    
+    function renderCateTable() {
+        cateTable.innerHTML = '';
+        cates.forEach(cate => {
+            const row = `
+                <tr>
+                    <td>${cate.id}</td>
+                    <td>${cate.catename}</td>
+                    <td>
+                        <div class="btn-space">
+                            <button class="btn-edit" data-id="${cate.id}">Sửa</button>
+                            <button class="btn-delete" data-id="${cate.id}">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            cateTable.insertAdjacentHTML('beforeend', row);
+        });
+
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', () => editCate(btn.dataset.id));
+        });
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', () => deleteCate(btn.dataset.id));
+        });
+    }
+
+    function isCatenameExist(catename) {
+        return cates.some(cate => cate.catename === catename);
+    }
+
+    function saveCate() {
+        const catename = document.getElementById('cate-name').value.trim();
+        if (!catename) {
+            alert('Vui lòng nhập tên danh mục.');
+            return;
+        }
+
+        if (isCatenameExist(catename) && (!editMode || cates.find(cate => cate.catename === catename && cate.id !== editingCateId))) {
+            alert('Tên danh mục đã tồn tại.');
+            return;
+        }
+
+        if (editMode) {
+            const cate = cates.find(cate => cate.id === editingCateId);
+            cate.catename = catename;
+        } else {
+            cates.push({
+                id: generateId(),
+                catename,
+            });
+        }
+
+        localStorage.setItem('cates', JSON.stringify(cates));
+        renderCateTable();
+        modal.style.display = 'none';
+    }
+
+    function editCate(id) {
+    const cate = cates.find(cate => cate.id === id);
+    if (!cate) return;
+    document.getElementById('cate-id').value = cate.id;
+    document.getElementById('cate-name').value = cate.catename;
+
+    editMode = true;
+    editingCateId = id;
+    modal.style.display = 'flex';
+    }
+
+    function deleteCate(id) {
+        if (confirm('Bạn có chắc muốn xóa danh mục này?')) {
+            cates = cates.filter(cate => cate.id !== id);
+            localStorage.setItem('cates', JSON.stringify(cates));
+            renderCateTable();
+        }
+    }
+    renderCateTable();
+
+    addButton.addEventListener('click', () => {
+        document.getElementById('cate-form').reset();
+        editMode = false;
+        modal.style.display = 'flex';
+    });
+    closeModal.addEventListener('click', () => (modal.style.display = 'none'));
+    cancelModal.addEventListener('click', () => (modal.style.display = 'none'));
+    saveButton.addEventListener('click', saveCate);
+}
+
+function initBrandManagement() {
+    const addButton = document.getElementById('open-add-modal');
+    const modal = document.getElementById('brand-modal');
+    const closeModal = document.getElementById('close-modal');
+    const cancelModal = document.getElementById('cancel-modal');
+    const saveButton = document.querySelector('.btn-save');
+    const brandTable = document.getElementById('brand-table');
+
+    let brands = JSON.parse(localStorage.getItem('brands')) || [];
+    let editMode = false;
+    let editingBrandId = null;
+    
+    function renderBrandTable() {
+        brandTable.innerHTML = '';
+        brands.forEach(brand => {
+            const row = `
+                <tr>
+                    <td>${brand.id}</td>
+                    <td>${brand.brandname}</td>
+                    <td>
+                        <div class="btn-space">
+                            <button class="btn-edit" data-id="${brand.id}">Sửa</button>
+                            <button class="btn-delete" data-id="${brand.id}">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            brandTable.insertAdjacentHTML('beforeend', row);
+        });
+
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', () => editBrand(btn.dataset.id));
+        });
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', () => deleteBrand(btn.dataset.id));
+        });
+    }
+
+    function isBrandnameExist(brandname) {
+        return brands.some(brand => brand.brandname === brandname);
+    }
+
+    function saveBrand() {
+        const brandname = document.getElementById('brand-name').value.trim();
+        if (!brandname) {
+            alert('Vui lòng nhập tên danh mục.');
+            return;
+        }
+
+        if (isBrandnameExist(brandname) && (!editMode || brands.find(brand => brand.brandname === brandname && brand.id !== editingBrandId))) {
+            alert('Tên danh mục đã tồn tại.');
+            return;
+        }
+
+        if (editMode) {
+            const brand = brands.find(brand => brand.id === editingBrandId);
+            brand.brandname = brandname;
+        } else {
+            brands.push({
+                id: generateId(),
+                brandname,
+            });
+        }
+
+        localStorage.setItem('brands', JSON.stringify(brands));
+        renderBrandTable();
+        modal.style.display = 'none';
+    }
+
+    function editBrand(id) {
+    const brand = brands.find(brand => brand.id === id);
+    if (!brand) return;
+
+    document.getElementById('brand-id').value = brand.id;
+    document.getElementById('brand-name').value = brand.brandname;
+
+    editMode = true;
+    editingBrandId = id;
+    modal.style.display = 'flex';
+    }
+
+    function deleteBrand(id) {
+        if (confirm('Bạn có chắc muốn xóa thương hiệu này?')) {
+            brands = brands.filter(brand => brand.id !== id);
+            localStorage.setItem('brands', JSON.stringify(brands));
+            renderBrandTable();
+        }
+    }
+    renderBrandTable();
+
+    addButton.addEventListener('click', () => {
+    document.getElementById('brand-form').reset();
+    document.getElementById('brand-id').value = '';
+    editMode = false;
+    modal.style.display = 'flex';
+    });
+    closeModal.addEventListener('click', () => (modal.style.display = 'none'));
+    cancelModal.addEventListener('click', () => (modal.style.display = 'none'));
+    saveButton.addEventListener('click', saveBrand);
+}
+
+function initProductManagement() {
+    const addButton = document.getElementById('open-add-modal');
+    const modal = document.getElementById('product-modal');
+    const closeModal = document.getElementById('close-modal');
+    const cancelModal = document.getElementById('cancel-modal');
+    const saveButton = modal ? modal.querySelector('.btn-save') : document.querySelector('#product-modal .btn-save');
+    const productTable = document.getElementById('product-table');
+    const avatarUpload = document.getElementById('product-image-upload');
+    const avatarPreview = document.getElementById('product-avatar-preview');
+    
+    // Kiểm tra các element có tồn tại không
+    if (!addButton) {
+        console.error('Không tìm thấy button "Thêm Sản Phẩm"');
+        return;
+    }
+    if (!modal) {
+        console.error('Không tìm thấy modal sản phẩm');
+        return;
+    }
+    if (!productTable) {
+        console.error('Không tìm thấy bảng sản phẩm');
+        return;
+    }
+
+    let products = JSON.parse(localStorage.getItem('productAll')) || [];
+    let editMode = false;
+    let editingProductId = null;
+
+    function renderProductTable() {
+        productTable.innerHTML = '';
+        products.forEach(product => {
+            const row = `
+                <tr>
+                    <td><img src="${product.avatar}" alt="" class="product-avatar" style="max-width: 50px;"></td>
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.oldPrice}₫</td>
+                    <td>${product.currentPrice}₫</td>
+                    <td class="truncate-text">${product.desc}</td>
+                    <td>${product.stock}</td>
+                    <td>
+                        <div class="btn-space">
+                            <button class="btn-edit" data-id="${product.id}">Sửa</button>
+                            <button class="btn-delete" data-id="${product.id}">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            productTable.insertAdjacentHTML('beforeend', row);
+        });
+
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', () => editProduct(btn.dataset.id));
+        });
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', () => deleteProduct(btn.dataset.id));
+        });
+    }
+
+    function calculateCurrentPrice() {
+        const oldPriceInput = document.getElementById('product-old-price');
+        const discountInput = document.getElementById('product-discount-percent');
+        const currentPriceInput = document.getElementById('product-current-price');
+        
+        if (!oldPriceInput || !discountInput || !currentPriceInput) return;
+        
+        const oldPriceValue = oldPriceInput.value.trim();
+        const discount = parseFloat(discountInput.value) || 0;
+
+        if (!oldPriceValue) {
+            currentPriceInput.value = '';
+            return;
+        }
+
+        const oldPrice = convertToNumber(oldPriceValue);
+        
+        if (isNaN(oldPrice) || oldPrice <= 0) {
+            currentPriceInput.value = '';
+            return;
+        }
+
+        const currentPrice = oldPrice - (oldPrice * discount / 100);
+        
+        if (currentPrice < 0) {
+            currentPriceInput.value = '0';
+            return;
+        }
+
+        currentPriceInput.value = formatNumber(currentPrice);
+    }
+
+    function convertToNumber(formattedValue) {
+        if (!formattedValue) return 0;
+        // Xóa dấu phẩy, dấu chấm và các ký tự không phải số
+        const cleaned = formattedValue.toString().replace(/[^\d]/g, '');
+        return parseFloat(cleaned) || 0;
+    }
+
+    function formatNumber(number) {
+        if (isNaN(number) || number < 0) return '0';
+        return number.toLocaleString('vi-VN');
+    }
+
+    function saveProduct() {
+        const id = editMode ? editingProductId : generateId();
+        const name = document.getElementById('product-name').value.trim();
+        const desc = document.getElementById('product-description').value.trim();
+        const oldPrice = document.getElementById('product-old-price').value.trim();
+        const currentPrice = document.getElementById('product-current-price').value.trim();
+        const stock = document.getElementById('product-stock-quantity').value.trim();
+        const avatar = avatarPreview.src || './assets/img/product/default.jpeg';
+        const discount = document.getElementById('product-discount-percent').value || '0';
+        
+        // Lấy giá trị từ dropdown với kiểm tra an toàn
+        const categorySelect = document.getElementById('product-category');
+        const brandSelect = document.getElementById('product-brand');
+        
+        let cateP = 'Chưa phân loại';
+        let brandP = 'Chưa phân loại';
+        
+        if (categorySelect) {
+            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+            if (selectedOption && selectedOption.value && !selectedOption.disabled) {
+                cateP = selectedOption.textContent;
+            } else if (categorySelect.options.length > 1) {
+                // Nếu không chọn, lấy option đầu tiên không phải disabled
+                for (let i = 1; i < categorySelect.options.length; i++) {
+                    if (!categorySelect.options[i].disabled) {
+                        cateP = categorySelect.options[i].textContent;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (brandSelect) {
+            const selectedOption = brandSelect.options[brandSelect.selectedIndex];
+            if (selectedOption && selectedOption.value && !selectedOption.disabled) {
+                brandP = selectedOption.textContent;
+            } else if (brandSelect.options.length > 1) {
+                // Nếu không chọn, lấy option đầu tiên không phải disabled
+                for (let i = 1; i < brandSelect.options.length; i++) {
+                    if (!brandSelect.options[i].disabled) {
+                        brandP = brandSelect.options[i].textContent;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!name || !oldPrice || !stock) {
+            alert('Vui lòng nhập đầy đủ thông tin bắt buộc (Tên sản phẩm, Giá cũ, Số lượng tồn).');
+            return;
+        }
+        
+        // Tự động tính giá hiện tại nếu chưa có hoặc bằng 0
+        let finalCurrentPrice = currentPrice;
+        if (!currentPrice || currentPrice === '' || currentPrice === 'NaN' || currentPrice === '0') {
+            calculateCurrentPrice();
+            finalCurrentPrice = document.getElementById('product-current-price').value.trim();
+            if (!finalCurrentPrice || finalCurrentPrice === 'NaN' || finalCurrentPrice === '0') {
+                alert('Vui lòng nhập giá cũ để tự động tính giá hiện tại.');
+                return;
+            }
+        }
+
+        if (editMode) {
+            const product = products.find(p => String(p.id) === String(editingProductId));
+            if (!product) {
+                alert('Không tìm thấy sản phẩm để cập nhật!');
+                return;
+            }
+            product.name = name;
+            product.desc = desc || '';
+            product.oldPrice = oldPrice;
+            product.currentPrice = finalCurrentPrice;
+            product.stock = stock;
+            product.avatar = avatar;
+            product.discount = discount || '0';
+            product.cateP = cateP;
+            product.brandP = brandP;
+        } else {
+            products.push({ 
+                id, 
+                name, 
+                desc: desc || '', 
+                oldPrice, 
+                currentPrice: finalCurrentPrice, 
+                stock, 
+                avatar, 
+                discount: discount || '0', 
+                cateP, 
+                brandP
+            });
+        }
+
+        try {
+            localStorage.setItem('productAll', JSON.stringify(products));
+            renderProductTable();
+            modal.style.display = 'none';
+            
+            // Thông báo thành công
+            if (editMode) {
+                alert('Cập nhật sản phẩm thành công!');
+            } else {
+                alert('Thêm sản phẩm thành công!');
+            }
+        } catch (error) {
+            console.error('Lỗi khi lưu sản phẩm:', error);
+            alert('Có lỗi xảy ra khi lưu sản phẩm. Vui lòng thử lại.\n\nChi tiết lỗi: ' + error.message);
+        }
+    }
+
+    function editProduct(id) {
+        // So sánh ID bằng cách chuyển đổi sang string để tránh lỗi kiểu dữ liệu
+        const product = products.find(p => String(p.id) === String(id));
+        if (!product) {
+            alert('Không tìm thấy sản phẩm!');
+            return;
+        }
+
+        document.getElementById('product-id').value = product.id;
+        document.getElementById('product-name').value = product.name;
+        document.getElementById('product-description').value = product.desc;
+        document.getElementById('product-old-price').value = product.oldPrice;
+        document.getElementById('product-discount-percent').value = '';
+        document.getElementById('product-current-price').value = product.currentPrice;
+        document.getElementById('product-stock-quantity').value = product.stock;
+        document.getElementById('product-discount-percent').value = product.discount;
+        // Tìm và chọn danh mục/thương hiệu trong dropdown
+        const categorySelect = document.getElementById('product-category');
+        const brandSelect = document.getElementById('product-brand');
+        
+        if (categorySelect && product.cateP) {
+            // Tìm option có textContent khớp với cateP
+            for (let option of categorySelect.options) {
+                if (option.textContent === product.cateP) {
+                    categorySelect.value = option.value;
+                    break;
+                }
+            }
+        }
+        
+        if (brandSelect && product.brandP) {
+            // Tìm option có textContent khớp với brandP
+            for (let option of brandSelect.options) {
+                if (option.textContent === product.brandP) {
+                    brandSelect.value = option.value;
+                    break;
+                }
+            }
+        }
+
+        avatarPreview.src = product.avatar;
+        avatarPreview.style.display = 'block';
+
+        editMode = true;
+        editingProductId = id;
+        modal.style.display = 'flex';
+    }
+
+    function deleteProduct(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+            // So sánh ID bằng cách chuyển đổi sang string để tránh lỗi kiểu dữ liệu
+            products = products.filter(p => String(p.id) !== String(id));
+            localStorage.setItem('productAll', JSON.stringify(products));
+            renderProductTable();
+            alert('Xóa sản phẩm thành công!');
+        }
+    }
+
+    addButton.addEventListener('click', () => {
+        document.getElementById('product-form').reset();
+        avatarPreview.src = './assets/img/product/default.jpeg';
+        avatarPreview.style.display = 'none';
+        editMode = false;
+        editingProductId = null;
+        
+        // Reset dropdown về option đầu tiên
+        const categorySelect = document.getElementById('product-category');
+        const brandSelect = document.getElementById('product-brand');
+        if (categorySelect && categorySelect.options.length > 0) {
+            categorySelect.selectedIndex = 0;
+        }
+        if (brandSelect && brandSelect.options.length > 0) {
+            brandSelect.selectedIndex = 0;
+        }
+        
+        // Reset giá hiện tại
+        document.getElementById('product-current-price').value = '';
+        
+        modal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    cancelModal.addEventListener('click', () => modal.style.display = 'none');
+
+    avatarUpload.addEventListener('change', () => {
+        const file = avatarUpload.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                avatarPreview.src = e.target.result;
+                avatarPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function loadDropdownData(selectId, localStorageKey, displayKey) {
+        const data = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        
+        select.innerHTML = "";
+
+        // Thêm option mặc định
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "-- Chọn " + (selectId === 'product-category' ? 'danh mục' : 'thương hiệu') + " --";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        select.appendChild(defaultOption);
+
+        data.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.textContent = item[displayKey];
+            select.appendChild(option);
+        });
+    }
+    loadDropdownData("product-category", "cates", "catename");
+    loadDropdownData("product-brand", "brands", "brandname");
+    
+    // Thêm event listeners với kiểm tra null
+    const oldPriceInput = document.getElementById('product-old-price');
+    const discountInput = document.getElementById('product-discount-percent');
+    
+    if (oldPriceInput) {
+        oldPriceInput.addEventListener('input', calculateCurrentPrice);
+    }
+    if (discountInput) {
+        discountInput.addEventListener('input', calculateCurrentPrice);
+    }
+    
+    renderProductTable();
+    
+    if (saveButton) {
+        saveButton.addEventListener('click', saveProduct);
+    } else {
+        console.error('Không tìm thấy button save trong modal sản phẩm');
+    }
+
+}
+
+function initOrderManagement() {
+    const addButton = document.getElementById('open-add-modal');
+    const modal = document.getElementById('order-modal');
+    const closeModal = document.getElementById('close-modal');
+    const cancelModal = document.getElementById('cancel-modal');
+    const saveButton = document.querySelector('.btn-save');
+    const orderTable = document.getElementById('order-table');
+    const searchInput = document.getElementById('search');
+    const searchButton = document.getElementById('search-btn');
+
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let editMode = false;
+    let editingOrderId = null;
+
+    function renderOrderTable() {
+        orderTable.innerHTML = '';
+        orders.forEach(order => {
+            const row = `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.date}</td>
+                    <td>${order.total.toLocaleString()} VND</td>
+                    <td>${order.status}</td>
+                    <td>
+                        <div class="btn-space">
+                            <button class="btn-edit" data-id="${order.id}">Sửa</button>
+                            <button class="btn-delete" data-id="${order.id}">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            orderTable.insertAdjacentHTML('beforeend', row);
+        });
+
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', () => editOrder(btn.dataset.id));
+        });
+
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', () => deleteOrder(btn.dataset.id));
+        });
+    }
+
+    function isOrderIdExist(orderId) {
+        return orders.some(order => order.id === orderId);
+    }
+
+    function saveOrder() {
+        const orderId = document.getElementById('order-id').value.trim() || generateId();
+        const customer = document.getElementById('customer-name').value.trim();
+        const date = document.getElementById('order-date').value.trim();
+        const total = parseFloat(document.getElementById('total-amount').value) || 0;
+        const status = document.getElementById('status').value;
+
+        if (!customer || !date || total <= 0) {
+            alert('Vui lòng điền đầy đủ thông tin đơn hàng.');
+            return;
+        }
+
+        if (editMode) {
+            const order = orders.find(order => order.id === editingOrderId);
+            order.customer = customer;
+            order.date = date;
+            order.total = total;
+            order.status = status;
+        } else {
+            if (isOrderIdExist(orderId)) {
+                alert('Mã đơn hàng đã tồn tại.');
+                return;
+            }
+
+            orders.push({ id: orderId, customer, date, total, status });
+        }
+
+        localStorage.setItem('orders', JSON.stringify(orders));
+        renderOrderTable();
+        modal.style.display = 'none';
+    }
+
+    function editOrder(id) {
+        const order = orders.find(order => order.id === id);
+        if (!order) return;
+
+        document.getElementById('order-id').value = order.id;
+        document.getElementById('customer-name').value = order.customer;
+        document.getElementById('order-date').value = order.date;
+        document.getElementById('total-amount').value = order.total;
+        document.getElementById('status').value = order.status;
+
+        editMode = true;
+        editingOrderId = id;
+        modal.style.display = 'flex';
+    }
+
+    // Hàm xóa đơn hàng
+    function deleteOrder(id) {
+        if (confirm('Bạn có chắc muốn xóa đơn hàng này?')) {
+            orders = orders.filter(order => order.id !== id);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            renderOrderTable();
+        }
+    }
+
+    function searchOrders() {
+        const query = searchInput.value.toLowerCase();
+        const filteredOrders = orders.filter(order =>
+            order.customer.toLowerCase().includes(query) || order.id.toLowerCase().includes(query)
+        );
+
+        orderTable.innerHTML = '';
+        filteredOrders.forEach(order => {
+            const row = `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.date}</td>
+                    <td>${order.total.toLocaleString()} VND</td>
+                    <td>${order.status}</td>
+                    <td>
+                        <div class="btn-space">
+                            <button class="btn-edit" data-id="${order.id}">Sửa</button>
+                            <button class="btn-delete" data-id="${order.id}">Xóa</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            orderTable.insertAdjacentHTML('beforeend', row);
+        });
+    }
+
+    addButton.addEventListener('click', () => {
+        document.getElementById('order-form').reset();
+        document.getElementById('order-id').value = '';
+        editMode = false;
+        modal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => (modal.style.display = 'none'));
+    cancelModal.addEventListener('click', () => (modal.style.display = 'none'));
+    saveButton.addEventListener('click', saveOrder);
+    searchButton.addEventListener('click', searchOrders);
+    renderOrderTable();
+}
+
+
+// Xử lý điều hướng trang
+document.getElementById('user-management').addEventListener('click', function (e) {
+    e.preventDefault();
+    loadContent('./quanlynguoidung.html');
+});
+document.getElementById('cate-management').addEventListener('click', function (e) {
+    e.preventDefault();
+    loadContent('./quanlydanhmuc.html');
+});
+document.getElementById('brand-management').addEventListener('click', function (e) {
+    e.preventDefault();
+    loadContent('./quanlythuonghieu.html');
+});
+document.getElementById('product-management').addEventListener('click', function (e) {
+    e.preventDefault();
+    loadContent('./quanlysanpham.html');
+});
+document.getElementById('order-management').addEventListener('click', function (e) {
+    e.preventDefault();
+    loadContent('./quanlydonhang.html');
+});
+</script>
+<script src="./assets/js/navbarAdmin.js"></script>
+<script src="./assets/js/initSampleData.js"></script>
+<script src="./assets/js/initSalesData.js"></script>
+    

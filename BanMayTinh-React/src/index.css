@@ -1,0 +1,12 @@
+/* Ưu tiên UI cũ: giữ nguyên class + CSS của BanMayTinh_FrontEnd */
+@import "./legacy-css/base_clean.css";
+@import "./legacy-css/main.css";
+@import "./legacy-css/home.css";
+@import "./legacy-css/details.css";
+@import "./legacy-css/cart.css";
+@import "./legacy-css/gthieu.css";
+@import "./legacy-css/lienhe.css";
+
+body {
+  font-family: "Roboto", sans-serif;
+}

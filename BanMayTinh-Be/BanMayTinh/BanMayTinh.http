@@ -1,0 +1,6 @@
+@BanMayTinh_HostAddress = http://localhost:5072
+
+GET {{BanMayTinh_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

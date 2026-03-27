@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sản Phẩm</title>
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="./assets/css/QL.css">
+</head>
+<body>
+    <div class="container pd-20">
+        <div class="header">
+            <h1>Quản Lý Sản Phẩm</h1>
+            <div class="actions">
+                <button class="btn-add" id="open-add-modal">Thêm Sản Phẩm</button>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Tìm kiếm theo tên sản phẩm, mã sản phẩm...">
+            <button id="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th>ProductID</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá Cũ</th>
+                    <th>Giá Hiện Tại</th>
+                    <th>Mô tả</th>
+                    <th>Số Lượng Tồn</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="product-table">
+                <tr>
+                    <td><img src="./assets/img/product/p4.webp" alt="" class="product-avatar"></td>
+                    <td>xxx-xxx</td>
+                    <td>Bầu</td>
+                    <td>3.000.000₫</td>
+                    <td>2.800.000₫</td>
+                    <td>Đàn bầu đẳng cấp....</td>
+                    <td>50</td>
+                    <td>
+                        <button class="btn-edit" data-id="xxx-xxx"><i class="fa fa-edit"></i> Sửa</button>
+                        <button class="btn-delete" data-id="xxx-xxx"><i class="fa fa-trash"></i> Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal">&times;</button>
+            <h2>Thông Tin Sản Phẩm</h2>
+            <form id="product-form">
+                <label for="product-image">Tải Ảnh</label>
+                <input type="file" id="product-image-upload" accept="image/*">
+                <img id="product-avatar-preview" src="" alt="Ảnh xem trước" style="max-width: 100px; display: none;">
+
+                <label for="product-id">ProductID</label>
+                <input type="text" id="product-id" name="product-id" disabled>
+
+                <label for="product-name">Tên Sản Phẩm</label>
+                <input type="text" id="product-name" name="product-name" required placeholder="Nhập tên sản phẩm">
+
+                <label for="product-description">Mô Tả</label>
+                <input type="text" id="product-description" name="product-description" placeholder="Nhập mô tả sản phẩm">
+
+                <!-- <label for="product-size">Kích Thước</label>
+                <input type="text" id="product-size" name="product-size" placeholder="Nhập kích thước sản phẩm"> -->
+
+                <label for="product-old-price">Giá Cũ</label>
+                <input type="text" id="product-old-price" name="product-old-price" placeholder="Nhập giá cũ" class="old-price-field">
+
+                <label for="product-discount-percent">Giảm Giá (%)</label>
+                <input type="number" id="product-discount-percent" name="product-discount-percent" placeholder="Nhập giảm giá (%)" min="0" max="100">
+
+                <label for="product-current-price">Giá Hiện Tại</label>
+                <input type="text" id="product-current-price" name="product-current-price" required placeholder="Giá sẽ tự tính" disabled>
+
+                <label for="product-stock-quantity">Số Lượng Tồn</label>
+                <input type="number" id="product-stock-quantity" name="product-stock-quantity" required placeholder="Nhập số lượng tồn kho">
+
+                <label for="product-category">Danh mục</label>
+                <select id="product-category" name="product-category"></select>
+
+                <label for="product-brand">Thương Hiệu</label>
+                <select id="product-brand" name="product-brand"></select>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-save">Lưu</button>
+                    <button type="button" class="btn-cancel" id="cancel-modal">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

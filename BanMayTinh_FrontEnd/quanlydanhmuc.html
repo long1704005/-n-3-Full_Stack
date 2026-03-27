@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Người Dùng</title>
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="./assets/css/QL.css">
+</head>
+<body>
+    <div class="container pd-20">
+        <div class="header">
+            <h1>Quản Lý Danh Mục</h1>
+            <div class="actions">
+                <button class="btn-add" id="open-add-modal"><i class="fa fa-plus"></i> Thêm danh mục</button>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Tìm kiếm theo tên, email...">
+            <button id="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã danh mục</th>
+                    <th>Tên danh mục</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="cate-table">
+                <tr>
+                    <td>xxx-xxx</td>
+                    <td>Nhạc cụ hơi</td>
+                    <td>
+                        <button class="btn-edit" data-id="xxx-xxx"><i class="fa fa-edit"></i> Sửa</button>
+                        <button class="btn-delete" data-id="xxx-xxx"><i class="fa fa-trash"></i> Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="cate-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal">&times;</button>
+            <h2>Thông Tin Danh Mục</h2>
+            <form id="cate-form">
+                <label for="cate-id">Mã danh mục</label>
+                <input type="text" id="cate-id" name="cate-id" disabled data-type="id">
+
+                <label for="cate-name">Tên danh mục</label>
+                <input type="text" id="cate-name" name="cate-name" required placeholder="Nhập tên danh mục">
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-save">Lưu</button>
+                    <button type="button" class="btn-cancel" id="cancel-modal">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

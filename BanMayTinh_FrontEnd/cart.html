@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/details.css">
+    <link rel="stylesheet" href="./assets/css/cart.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Begin header -->
+        <header class="header">
+            <div class="grid">
+                <nav class="navbar">
+                    <ul class="navbar__list">
+                        <li class="navbar__list-item upper-text separate">
+                            <i class="navbar__icon fa-solid fa-phone navbar__icon--nopointer"></i>
+                            <span class="navbar-title--nopointer">Hotline: 0963 541 319 | Build PC: 0963 541 319 | Giao hàng nhanh chóng</span>
+                        </li>
+                        <li class="navbar__list-item separate">
+                            <i class="navbar__icon fa-solid fa-location-dot navbar__icon--nopointer"></i>
+                            <span class="navbar-title--nopointer">Nhân Hòa, Mỹ Hào, Hưng Yên</span>
+                        </li>
+                        <li class="navbar__list-item">
+                            <span class="navbar-title--nopointer">Kết nối</span>
+                            <a class="navbar__list-icon-link" href="">
+                                <i class="navbar__icon navbar__icon-blur fa-brands fa-facebook"></i>
+                            </a>
+                            <a class="navbar__list-icon-link" href="">
+                                <i class="navbar__icon navbar__icon-blur fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar__list">
+                        <li class="navbar__list-item navbar__list-item--has-notify">
+                            <a class="navbar__list-item-link" href="">
+                                <i class="navbar__icon fa-solid fa-bell"></i>
+                                Thông báo
+                            </a>
+                            <div class="navbar__notify">
+                                <header class="navbar__notify-header">      
+                                    <h3>Thông báo mới nhất</h3>
+                                </header>
+                                <ul class="navbar__notify-list">
+                                    <li class="navbar__notify-item navbar__notify-item--viewed">
+                                        <a class="navbar__notify-link" href="">
+                                            <img class="navbar__notify-img" src="//product.hstatic.net/1000288298/product/dsc04228_be2c172f02dd4cc38339bc82d04100a8_master.jpg" alt="">
+                                            <div class="navbar__notify-info">
+                                                <span class="navbar__notify-name">PC FASTER GAMING 10400F - RTX 3050 6GB</span>
+                                                <span class="navbar__notify-desc">Sale duy nhất 25/09/2024</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="navbar__notify-item">
+                                        <a class="navbar__notify-link" href="">
+                                            <img class="navbar__notify-img" src="//product.hstatic.net/1000288298/product/dsc04228_be2c172f02dd4cc38339bc82d04100a8_master.jpg" alt="">
+                                            <div class="navbar__notify-info">
+                                                <span class="navbar__notify-name">PC FASTER GAMING 10400F - RTX 3050 6GB</span>
+                                                <span class="navbar__notify-desc">Sale duy nhất 25/09/2024</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="navbar__notify-item navbar__notify-item--viewed">
+                                        <a class="navbar__notify-link" href="">
+                                            <img class="navbar__notify-img" src="//product.hstatic.net/1000288298/product/dsc04228_be2c172f02dd4cc38339bc82d04100a8_master.jpg" alt="">
+                                            <div class="navbar__notify-info">
+                                                <span class="navbar__notify-name">PC FASTER GAMING 10400F - RTX 3050 6GB</span>
+                                                <span class="navbar__notify-desc">Sale duy nhất 25/09/2024</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <footer class="navbar__notify-footer">
+                                    <a href="" class="navbar__notify-footer-btn">Xem tất cả</a>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="navbar__list-item">
+                            <a class="navbar__list-item-link" href=""><i class="navbar__icon fa-regular fa-circle-question"></i>Trợ giúp</a>
+                        </li>
+                        <li><img id="user-avatar" class="avatar" src="" alt="Avatar" style="display: none;"></li>
+                        <li id="user-info" class="user-info" style="display: none;"></li>
+                        <li class="registerhome navbar__list-item weight-text separate">Đăng ký</li>
+                        <li class="loginhome navbar__list-item weight-text"><a class="link-login" href="./login.html">Đăng nhập</a></li>
+                        <li class="navbar__list-item weight-text" id="logout-btn" style="display: none;">Đăng xuất</li>
+                    </ul>
+                </nav>
+                <div class="header-with-search">
+                    <div class="header__logo">
+                        <!-- <a href="">
+                            <h3 class="header__logo-text">Lougi Shop</h3>
+                        </a> -->
+                        <a href="./home.html">
+                            <img class="header__logo-img" src="assets/img/product/pc/logo.webp" alt="LougiShop">
+                        </a>
+                    </div>
+                    <div class="header__search">
+                        <div class="header__search-input-wrap">
+                            <input class="header__search-input" type="text" placeholder="Tìm kiếm sản phẩm...">
+                        </div>
+                        <button class="header__search-btn">
+                            <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="header__cart">
+                        <a href="./cart.html">
+                            <i class="header__cart-icon fa-solid fa-cart-arrow-down"></i>
+                            <span class="cart-items">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="header__bottom">
+                    <ul class="header__bottom-links">
+                        <li>
+                            <a href="./home.html">
+                                <i class="menu-icon-right fa-solid fa-house"></i>
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./product.html">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="./gthieu.html">
+                                <i class="fa-solid fa-share"></i>
+                                Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a href="./lienhe.html">
+                                <i class="fa-solid fa-phone"></i>
+                                Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section class="app__container mt-header">
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="grid--full-width">
+                        <div class="cart-table">
+                            <table>
+                                <tr>
+                                    <th class="text-center">Sản phẩm</th>
+                                    <th class="text-center">Phiên bản</th>
+                                    <th class="text-center">Màu sắc</th>
+                                    <th class="text-center">Đơn giá</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-center">Số tiền</th>
+                                    <th class="text-center">Thao tác</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="cart-info">
+                                            <img src="assets/img/product/PC TTG GAMING i5 13600K- 16GB DDR5- RTX 4070 SUPER 12GB OC.jpg" alt="">
+                                            <div>
+                                                <p>PC TTG GAMING i5 13600K- 16GB DDR5- RTX 4070 SUPER 12GB OC</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">Có gắn EQ</td>
+                                    <td class="text-center">Màu nâu gỗ</td>
+                                    <td>
+                                        <div class="flex">
+                                            <div class="products__price-old fs-13px">1.450.000₫</div>
+                                            <div class="products__price-current fs-13px">1.377.000₫</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex bg-default">
+                                            <button class="decrease bg-default">-</button>
+                                            <input class="input-quantity-detail bg-default" type="text" value="1">
+                                            <button class="increase bg-default">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">1.377.000₫</td>
+                                    <td class="text-center">
+                                        <a href="">Xóa</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="total-price">
+                                <table>
+                                    <tr>
+                                        <td>Số tiền</td>
+                                        <td>1.377.000₫</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tổng thanh toán</td>
+                                        <td>1.377.000₫</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="total-price mt-16">
+                                <div class="space-btn">
+                                    <button id="clear-cart" class="btn-scart">Xóa tất cả</button>
+                                    <button id="check-out" class="btn-scart">Thanh toán</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End main -->
+        <div class="newsletter-section">
+            <div class="container-fluid">
+                <div class="wrapbox-newsletter">
+                    <div class="newsletter-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2L11 13"></path>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                        </svg>
+                        <h3>Đăng ký nhận bản tin</h3>
+                    </div>
+                    <p class="newsletter-description">Để nhận các thông tin mới từ TTG cũng như các chương trình khuyến mãi</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Vui lòng nhập email của bạn..." />
+                        <button>ĐĂNG KÝ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Begin footer -->
+        <footer class="footer">
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            <div class="header__logo">
+                                <!-- <a href="">
+                                    <h3 class="header__logo-text">Lougi Shop</h3>
+                                </a> -->
+                                <a href="./home.html">
+                                    <img class="header__logo-img" src="assets/img/product/pc/logo.webp" alt="LougiShop">
+                                </a>
+                        </h3>
+                        <p class="contact-list">
+                            <b>Điện thoại:</b>
+                            <a href="tel:0963541319">0963 541 319</a>
+                            <br>
+                            <b>Email:</b>
+                            <a href="mailto:anhtuanhym204@gmail.com">anhtuanhym204@gmail.com</a>
+                            <br>
+                            <b>Địa chỉ:</b>
+                            Nhân hòa - Mỹ Hào - Hưng Yên
+                        </p>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Về TTGShop
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Giới thiệu</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Sản phẩm</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Liên hệ</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Điều khoản</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Bảo mật</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Danh mục
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">PC Gaming - Máy tính chơi game</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">PC Workstation</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Màn hình</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Linh kiện máy tính</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Chăm sóc khách hàng
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Trung tâm trợ giúp</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Hướng dẫn mua hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Theo dõi chúng tôi trên
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">
+                                    <i class="footer-icon fa-brands fa-square-facebook"></i>
+                                    Facebook
+                                </a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">
+                                    <i class="footer-icon fa-brands fa-square-instagram"></i>
+                                    Instagram
+                                </a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">
+                                    <i class="footer-icon fa-brands fa-telegram"></i>
+                                    Telegram
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid__row">
+                    <div class="footer-copyright">
+                        © 2024 TTGShopTTGShop. Nền tảng mua bán công nghệ hàng đầu Việt Nam. Được thiết kế và phát triển bởi Nguyen Long
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+</body>
+</html>
+<script src="./assets/js/navbarUser.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    updateUserNavbar();
+});
+// Hàm hiển thị danh sách sản phẩm trong giỏ hàng
+function displayCartItems() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartTable = document.querySelector('.cart-table table');
+    cartTable.innerHTML = `
+        <tr>
+            <th class="text-center">Sản phẩm</th>
+            <th class="text-center">Phiên bản</th>
+            <th class="text-center">Màu sắc</th>
+            <th class="text-center">Đơn giá</th>
+            <th class="text-center">Số lượng</th>
+            <th class="text-center">Số tiền</th>
+            <th class="text-center">Thao tác</th>
+        </tr>
+    `;
+
+    if (cart.length === 0) {
+        cartTable.innerHTML += `<tr><td colspan="7" class="text-center">Giỏ hàng trống!</td></tr>`;
+        updateTotalPrice();
+        return;
+    }
+
+    // Thêm từng sản phẩm vào bảng
+    cart.forEach((item, index) => {
+        const itemPrice = parseFloat(item.price.replace(/[^\d]/g, '').replace(',', ''));
+        const itemTotalPrice = itemPrice * item.quantity;
+        const formattedItemTotalPrice = itemTotalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+        cartTable.innerHTML += `
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="${item.imageMain}" alt="${item.name}">
+                        <div>
+                            <p>${item.name}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center">${item.version || 'Không'}</td>
+                <td class="text-center">${item.color || 'Không'}</td>
+                <td>
+                    <div class="flex">
+                        <div class="products__price-old fs-13px">${item.oldPrice}</div>
+                        <div class="products__price-current fs-13px">${item.price}</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex bg-default">
+                        <button class="decrease bg-default" onclick="updateQuantity(${index}, -1)">-</button>
+                        <input class="input-quantity-detail bg-default" type="text" value="${item.quantity}" readonly>
+                        <button class="increase bg-default" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                </td>
+                <td class="text-center">${formattedItemTotalPrice}</td>
+                <td class="text-center">
+                    <a href="#" onclick="removeItem(${index})">Xóa</a>
+                </td>
+            </tr>
+        `;
+    });
+
+    updateTotalPrice();
+}
+
+// Hàm cập nhật tổng tiền
+function updateTotalPrice() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalPrice = cart.reduce((total, item) => {
+        const itemPrice = parseFloat(item.price.replace(/[^\d]/g, '').replace(',', ''));
+        return total + itemPrice * item.quantity;
+    }, 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+    const totalTable = document.querySelector('.total-price table');
+    totalTable.innerHTML = `
+        <tr>
+            <td>Số tiền</td>
+            <td>${totalPrice}</td>
+        </tr>
+        <tr>
+            <td>Tổng thanh toán</td>
+            <td>${totalPrice}</td>
+        </tr>
+    `;
+}
+
+// Hàm cập nhật số lượng sản phẩm
+function updateQuantity(index, change) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index]) {
+        cart[index].quantity += change;
+        if (cart[index].quantity < 1) cart[index].quantity = 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCartItems();
+        updateCartCount();
+    }
+}
+
+// Hàm xóa sản phẩm
+function removeItem(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCartItems();
+    updateCartCount();
+}
+
+// Hàm xóa tất cả sản phẩm
+function clearCart() {
+    if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
+        localStorage.removeItem('cart');
+        displayCartItems();
+        updateCartCount();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateUserNavbar();
+    displayCartItems();
+    updateCartCount();
+
+    document.getElementById('clear-cart').addEventListener('click', () => {
+        if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
+            localStorage.removeItem('cart');
+            displayCartItems();
+            updateCartCount();
+        }
+    });
+
+    const checkoutBtn = document.querySelector('.btn-scart:last-of-type');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', handleCheckout);
+    }
+
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logoutUser);
+    }
+});
+
+function handleCheckout() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (cart.length === 0) {
+        alert("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm để thanh toán.");
+        return;
+    }
+
+    if (!currentUser) {
+        alert("Vui lòng đăng nhập để thanh toán.");
+        return;
+    }
+
+    // Tính tổng tiền
+    const totalAmount = cart.reduce((total, item) => {
+        const itemPrice = parseFloat(item.price.replace(/[^\d]/g, '').replace(',', ''));
+        return total + itemPrice * item.quantity;
+    }, 0);
+
+    // Tạo đơn hàng mới
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const newOrder = {
+        id: 'DH' + Date.now(),
+        customer: currentUser.fullname,
+        date: new Date().toISOString().split('T')[0],
+        total: totalAmount,
+        status: 'completed',
+        items: cart
+    };
+    orders.push(newOrder);
+    localStorage.setItem('orders', JSON.stringify(orders));
+
+    // Cập nhật dữ liệu thống kê bán hàng
+    updateSalesStatistics(cart);
+
+    // Xóa giỏ hàng
+    localStorage.removeItem('cart');
+    displayCartItems();
+    updateCartCount();
+
+    alert(`${currentUser.fullname} đã thanh toán thành công với số tiền là: ${totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}`);
+}
+
+// Hàm cập nhật thống kê bán hàng
+function updateSalesStatistics(cart) {
+    // Lấy danh sách sản phẩm
+    const products = JSON.parse(localStorage.getItem('productAll')) || [];
+    
+    // Lấy dữ liệu bán hàng hiện tại
+    let salesByCategory = JSON.parse(localStorage.getItem('salesByCategory')) || {};
+    let revenueByCategory = JSON.parse(localStorage.getItem('revenueByCategory')) || {};
+
+    // Duyệt qua từng sản phẩm trong giỏ hàng
+    cart.forEach(cartItem => {
+        // Tìm sản phẩm tương ứng trong danh sách sản phẩm
+        const product = products.find(p => p.name === cartItem.name);
+        
+        if (product) {
+            const category = product.cateP || product.type || 'Khác';
+            const quantity = cartItem.quantity || 1;
+            const price = parseFloat((cartItem.price || '0').replace(/[^\d]/g, '').replace(',', ''));
+            const revenue = quantity * price;
+
+            // Cập nhật số lượng bán ra theo danh mục
+            salesByCategory[category] = (salesByCategory[category] || 0) + quantity;
+            
+            // Cập nhật doanh thu theo danh mục
+            revenueByCategory[category] = (revenueByCategory[category] || 0) + revenue;
+
+            // Cập nhật số lượng đã bán cho sản phẩm
+            if (!product.soldQuantity) {
+                product.soldQuantity = 0;
+            }
+            product.soldQuantity += quantity;
+            
+            if (!product.totalRevenue) {
+                product.totalRevenue = 0;
+            }
+            product.totalRevenue += revenue;
+
+            // Giảm tồn kho
+            const currentStock = parseInt(product.stock || 0);
+            product.stock = Math.max(0, currentStock - quantity);
+        } else {
+            // Nếu không tìm thấy sản phẩm, vẫn cập nhật theo tên sản phẩm
+            // Phân loại dựa trên tên sản phẩm
+            let category = 'Khác';
+            if (cartItem.name.includes('PC') || cartItem.name.includes('Gaming')) {
+                category = 'PC';
+            } else if (cartItem.name.includes('Màn hình')) {
+                category = 'Màn hình';
+            } else if (cartItem.name.includes('Gaming Gear') || cartItem.name.includes('Chuột') || cartItem.name.includes('Bàn phím')) {
+                category = 'Gaming Gear';
+            } else if (cartItem.name.includes('Card') || cartItem.name.includes('CPU') || cartItem.name.includes('RAM')) {
+                category = 'Linh kiện';
+            }
+
+            const quantity = cartItem.quantity || 1;
+            const price = parseFloat((cartItem.price || '0').replace(/[^\d]/g, '').replace(',', ''));
+            const revenue = quantity * price;
+
+            salesByCategory[category] = (salesByCategory[category] || 0) + quantity;
+            revenueByCategory[category] = (revenueByCategory[category] || 0) + revenue;
+        }
+    });
+
+    // Lưu lại dữ liệu
+    localStorage.setItem('salesByCategory', JSON.stringify(salesByCategory));
+    localStorage.setItem('revenueByCategory', JSON.stringify(revenueByCategory));
+    localStorage.setItem('productAll', JSON.stringify(products));
+    
+    // Trigger custom event để trang thống kê có thể cập nhật
+    window.dispatchEvent(new CustomEvent('salesDataUpdated', {
+        detail: { salesByCategory, revenueByCategory }
+    }));
+    
+    console.log('Đã cập nhật dữ liệu thống kê bán hàng:', {
+        salesByCategory,
+        revenueByCategory
+    });
+}
+
+// Hiển thị giỏ hàng khi tải trang
+window.onload = () => {
+    displayCartItems();
+    updateCartCount();
+};
+
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemCount = cart.length;
+    const cartCount = document.querySelector('.cart-items');
+    if (cartCount) {
+        cartCount.textContent = `(${cartItemCount})`;
+    }
+}
+</script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Đơn Hàng</title>
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="./assets/css/QL.css">
+</head>
+<body>
+    <div class="container pd-20">
+        <div class="header">
+            <h1>Quản Lý Đơn Hàng</h1>
+            <div class="actions">
+                <button class="btn-add" id="open-add-modal"><i class="fa fa-plus"></i> Tạo đơn hàng</button>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Tìm kiếm theo mã đơn, tên khách hàng...">
+            <button id="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="order-table">
+                <tr>
+                    <td>DH001</td>
+                    <td>Nguyễn Văn A</td>
+                    <td>2024-12-15</td>
+                    <td>5,000,000 VND</td>
+                    <td>Đang xử lý</td>
+                    <td>
+                        <button class="btn-edit" data-id="DH001"><i class="fa fa-edit"></i> Sửa</button>
+                        <button class="btn-delete" data-id="DH001"><i class="fa fa-trash"></i> Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal">&times;</button>
+            <h2>Thông Tin Đơn Hàng</h2>
+            <form id="order-form">
+                <label for="order-id">Mã đơn hàng</label>
+                <input type="text" id="order-id" name="order-id" disabled data-type="id">
+
+                <label for="customer-name">Tên khách hàng</label>
+                <input type="text" id="customer-name" name="customer-name" required placeholder="Nhập tên khách hàng">
+
+                <label for="order-date">Ngày đặt</label>
+                <input type="date" id="order-date" name="order-date" required>
+
+                <label for="total-amount">Tổng tiền</label>
+                <input type="number" id="total-amount" name="total-amount" required placeholder="Nhập tổng tiền">
+
+                <label for="status">Trạng thái</label>
+                <select id="status" name="status">
+                    <option value="processing">Đang xử lý</option>
+                    <option value="shipped">Đã giao</option>
+                    <option value="completed">Hoàn thành</option>
+                    <option value="canceled">Hủy</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-save">Lưu</button>
+                    <button type="button" class="btn-cancel" id="cancel-modal">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

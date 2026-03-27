@@ -1,0 +1,165 @@
+.app__container.home {
+    
+}
+
+.grid--full-width.home {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.home-product.home {
+    margin-bottom: 24px;
+}
+
+.home-product {
+    overflow: hidden;
+}
+
+.card-products.home {
+    margin-top: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.card-products__img {
+    border-radius: 0;
+}
+
+.card-products.home:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.header__card-products {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-right-radius: 2px; 
+}
+
+.title-deal {
+    position: relative;
+    margin: 0;
+    width: auto;
+    color: var(--text-color);
+    background: #f1debc;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 24px;
+    display: inline-block;
+    border-top-right-radius: 2px; 
+
+    border-left: 3px solid;
+    border-color: var(--primary-color);
+    text-transform: uppercase;
+    padding: 2px 80px 2px 30px;
+}
+
+.view-more {
+    text-decoration: none;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 5px 0 15px;
+    color: var(--text-color);
+}
+
+.view-more-right {
+    margin-left: 8px;
+    font-size: 1.2rem;
+}
+
+.avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.user-info {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.link-login{
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* CSS được tách từ inline styles trong home.html */
+#user-avatar {
+    display: none;
+}
+
+#user-info {
+    display: none;
+}
+
+#logout-btn {
+    display: none;
+}
+
+/* CSS background-image cho các sản phẩm - được tách từ inline styles */
+.product-img-1 {
+    background-image: url('../img/product/PC%20TTG%20GAMING%20i7%2014700KF%20-%2032GB%20DDR5%20-%20RTX%204060%20Ti%2016GB%20OC%20(All%20NEW%20-%20Bảo%20hành%2036%20tháng).webp');
+}
+
+.product-img-2 {
+    background-image: url('../img/product/PC\ FASTER\ GAMING\ 10400F\ -\ RTX\ 3050\ 6GB\ \(\ ALL\ NEW-\ Bảo\ hành\ 36\ Tháng\)-\ 379\ slots-\ 152\ HN-\ 227\ HCM1.webp');
+}
+
+.product-img-3 {
+    background-image: url('../img/product/PC\ Gaming\ Hiệu\ Suất\ Cao\ ASL\ RTX\ 3060\ 12GB\ -\ 12400F1.webp');
+}
+
+.product-img-4 {
+    background-image: url('../img/product/PC\ GAMING\ HIGH\ PERFORMANCE\ i5\ 12400F-\ RTX\ 4060\ Ti\ 8GB\ OC\ WHITE.webp');
+}
+
+.product-img-5 {
+    background-image: url('../img/product/PC\ ASUS\ GAMING\ PERFORMANCE\ RTX\ 4060\ -\ I5\ 12400F.jpg');
+}
+
+.product-img-11 {
+    background-image: url('//product.hstatic.net/1000288298/product/man-hinh-lcd-viewsonic-xg2709a-240hz_1_08c98af06aa8494486e6eb9bba2b4ad7_master.jpg');
+}
+
+.product-img-12 {
+    background-image: url('//product.hstatic.net/1000288298/product/86998_man_hinh_dark_flash_g243fw_3_cb3e28c9773447d491584c6dd832115c_master.jpg');
+}
+
+.product-img-13 {
+    background-image: url('../img/product/VX2758.webp');
+}
+
+.product-img-14 {
+    background-image: url('//product.hstatic.net/1000288298/product/11847_mpg_341cqpx_qd_oled3_e8f0c0a6dd1043faa3d4848e937026f1_master.jpg');
+}
+
+.product-img-15 {
+    background-image: url('//product.hstatic.net/1000288298/product/man_hinh_gaming_zowie_benq_xl2566k__2e4a1517e7a34c7f9c8d5ea728098eaa_master.jpg');
+}
+
+.product-img-16 {
+    background-image: url('//product.hstatic.net/1000288298/product/chuot_razer_deathadder_essential_ergonomic_trang_usb_led_white__e717d48cab2340f39321c2116dc6db38_master.jpg');
+}
+
+.product-img-17 {
+    background-image: url('//product.hstatic.net/1000288298/product/1_df3ae5cff2df498db9ff1c9425207ee9_master.jpg');
+}
+
+.product-img-18 {
+    background-image: url('//product.hstatic.net/1000288298/product/tai-nghe-dareu-eh722x-usb-7-1-black_0003_4_3e2f540642694d1396287ab355b70e72_master.jpg');
+}
+
+.product-img-19 {
+    background-image: url('//product.hstatic.net/1000288298/product/11502_455_e8248071026ba01c09b26ec934bede16_e4736616ce43419793dbc13893e62d3a_master.jpg');
+}
+
+.product-img-20 {
+    background-image: url('//product.hstatic.net/1000288298/product/z4610532064383_7fe9f35c8d63cb154e2fdba39464235f_fc9afedec3a7492d9d9da9500dd36187_master.jpg');
+}
+

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/details.css">
+    <link rel="stylesheet" href="./assets/css/reponsive.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Begin header -->
+        <header class="header">
+            <div class="grid">
+                <nav class="navbar">
+                    <ul class="navbar__list">
+                        <li class="navbar__list-item upper-text separate">
+                            <i class="navbar__icon fa-solid fa-phone navbar__icon--nopointer"></i>
+                            <span class="navbar-title--nopointer">Hotline: 0963 541 319 | Build PC: 0963 541 319 | Giao hàng nhanh chóng</span>
+                        </li>
+                        <li class="navbar__list-item separate">
+                            <i class="navbar__icon fa-solid fa-location-dot navbar__icon--nopointer"></i>
+                            <span class="navbar-title--nopointer">Nhân Hòa, Mỹ Hào, Hưng Yên</span>
+                        </li>
+                        <li class="navbar__list-item">
+                            <span class="navbar-title--nopointer">Kết nối</span>
+                            <a class="navbar__list-icon-link" href="">
+                                <i class="navbar__icon navbar__icon-blur fa-brands fa-facebook"></i>
+                            </a>
+                            <a class="navbar__list-icon-link" href="">
+                                <i class="navbar__icon navbar__icon-blur fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar__list">
+                        <li class="navbar__list-item navbar__list-item--has-notify">
+                            <a class="navbar__list-item-link" href="">
+                                <i class="navbar__icon fa-solid fa-bell"></i>
+                                Thông báo
+                            </a>
+                            <div class="navbar__notify">
+                                <header class="navbar__notify-header">      
+                                    <h3>Thông báo mới nhất</h3>
+                                </header>
+                                <ul class="navbar__notify-list">
+                                    <li class="navbar__notify-item navbar__notify-item--viewed">
+                                        <a class="navbar__notify-link" href="">
+                                            <img class="navbar__notify-img" src="img/New folder/PC ASUS GAMING PERFORMANCE RTX 4060 - I5 12400F.jpg" alt="">
+                                            <div class="navbar__notify-info">
+                                                <span class="navbar__notify-name">PC FASTER GAMING 10400F - RTX 3050 6GB</span>
+                                                <span class="navbar__notify-desc">Sale duy nhất 25/09/2024</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="navbar__notify-item">
+                                        <a class="navbar__notify-link" href="">
+                                            <img class="navbar__notify-img" src="img/New folder/PC ASUS GAMING PERFORMANCE RTX 4060 - I5 12400F.jpg" alt="">
+                                            <div class="navbar__notify-info">
+                                                <span class="navbar__notify-name">PC FASTER GAMING 10400F - RTX 3050 6GB</span>
+                                                <span class="navbar__notify-desc">Sale duy nhất 25/09/2024</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="navbar__notify-item navbar__notify-item--viewed">
+                                        <a class="navbar__notify-link" href="">
+                                            <img class="navbar__notify-img" src="img/New folder/PC ASUS GAMING PERFORMANCE RTX 4060 - I5 12400F.jpg" alt="">
+                                            <div class="navbar__notify-info">
+                                                <span class="navbar__notify-name">PC FASTER GAMING 10400F - RTX 3050 6GB</span>
+                                                <span class="navbar__notify-desc">Sale duy nhất 25/09/2024</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <footer class="navbar__notify-footer">
+                                    <a href="" class="navbar__notify-footer-btn">Xem tất cả</a>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="navbar__list-item">
+                            <a class="navbar__list-item-link" href=""><i class="navbar__icon fa-regular fa-circle-question"></i>Trợ giúp</a>
+                        </li>
+                        <li><img id="user-avatar" class="avatar" src="" alt="Avatar" style="display: none;"></li>
+                        <li id="user-info" class="user-info" style="display: none;"></li>
+                        <li class="registerhome navbar__list-item weight-text separate">Đăng ký</li>
+                        <li class="loginhome navbar__list-item weight-text"><a class="link-login" href="./login.html">Đăng nhập</a></li>
+                        <li class="navbar__list-item weight-text" id="logout-btn" style="display: none;">Đăng xuất</li>
+                    </ul>
+                </nav>
+                <div class="header-with-search">
+                    <div class="header__logo">
+                        <!-- <a href="">
+                            <h3 class="header__logo-text">Lougi Shop</h3>
+                        </a> -->
+                        <a href="./home.html">
+                            <img class="header__logo-img" src="assets/img/product/pc/logo.webp" alt="LougiShop">
+                        </a>
+                    </div>
+                    <div class="header__search">
+                        <div class="header__search-input-wrap">
+                            <input class="header__search-input" type="text" placeholder="Tìm kiếm sản phẩm...">
+                        </div>
+                        <button class="header__search-btn">
+                            <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="header__cart">
+                        <a href="./cart.html">
+                            <i class="header__cart-icon fa-solid fa-cart-arrow-down"></i>
+                            <span class="cart-items">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="header__bottom">
+                    <ul class="header__bottom-links">
+                        <li>
+                            <a href="./home.html">
+                                <i class="menu-icon-right fa-solid fa-house"></i>
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./product.html">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="./gthieu.html">
+                                <i class="fa-solid fa-share"></i>
+                                Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a href="./lienhe.html">
+                                <i class="fa-solid fa-phone"></i>
+                                Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <section class="app__container app__container--details">
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid--full-width mt-16">
+                        <div class="page-product__breadcrumb">
+                            <a class="breadcrumb-link" href="">TTGShop</a>
+                            <i class="breadcrumb-icon fa-solid fa-angle-right"></i>
+                            <a class="breadcrumb-link" id="breadcrumb-product-type" href=""></a>
+                            <i class="breadcrumb-icon fa-solid fa-angle-right"></i>
+                            <span class="breadcrumb-text" id="breadcrumb-product-name"></span>
+                        </div>
+                    </div>
+        
+                    <div class="grid--full-width flex mt-16 card">
+                        <div class="grid__column-5">
+                            <div class="content__product-left flex flex-column">
+                                <div class="product__img-large">
+                                    <img id="product-image" class="img-main" src="" alt="">
+                                </div>
+                                <div class="product__img-small flex">
+                                    <div class="wrap__img-small">
+                                        <img class="img-small" src="" alt="" id="product-image-small-1">
+                                    </div>
+                                    <div class="wrap__img-small">
+                                        <img class="img-small" src="" alt="" id="product-image-small-2">
+                                    </div>
+                                    <div class="wrap__img-small">
+                                        <img class="img-small" src="" alt="" id="product-image-small-3">
+                                    </div>
+                                    <div class="wrap__img-small">
+                                        <img class="img-small" src="" alt="" id="product-image-small-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="grid__column-7">
+                            <div class="content__product-right">
+                                <div class="product__title">
+                                    <div class="products__favor">Yêu thích</div>
+                                    <span id="product-title"></span>
+                                </div>
+                                <div class="products__price flex">
+                                    <div id="product-price-old" class="products__price-old"></div>
+                                    <div id="product-price-current" class="products__price-current"></div>
+                                    <div id="product-percent" class="products__percent"></div>
+                                </div>
+        
+                                <div class="flex flex-column pl-pr-20 mt-16">
+                                    <div class="flex mb-25">
+                                        <h3 class="left-details-title">Loại sản phẩm</h3>
+                                        <span id="product-type" class="left-details-title text-color"></span>
+                                    </div>
+                                    <div class="flex mb-25">
+                                        <h3 class="left-details-title">Thương hiệu</h3>
+                                        <span id="product-brand" class="left-details-title text-color"></span>
+                                    </div>
+                                    <div class="flex mb-25">
+                                        <h3 class="left-details-title">Kích thước(dài x rộng x cao)</h3>
+                                        <span id="product-size" class="left-details-title text-color"></span>
+                                    </div>
+                                    <div class="color-detail flex mb-25">
+                                        <h3 class="left-details-title">Màu sắc</h3>
+                                        <div class="flex bg-white sup-color-detail" id="product-color-options"></div>
+                                    </div>
+                                    <div class="version-detail flex mb-25">
+                                        <h3 class="left-details-title">Phiên bản</h3>
+                                        <div class="flex bg-white" id="product-version-options"></div>
+                                    </div>
+                                    <div class="quantity-detail flex mb-25">
+                                        <h3 class="left-details-title">Số lượng</h3>
+                                        <div class="flex bg-white">
+                                            <button class="decrease" id="decrease" onclick="decrease()">-</button>
+                                            <input class="input-quantity-detail" id="quantity" type="text" value="1">
+                                            <button class="increase" id="increase" onclick="increase()">+</button>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div style="margin-top: 15px;">
+                                    <div class="btn-group-detail pl-20">
+                                        <div class="btn add-to-cart mr-16" onclick="addToCart()">
+                                            <i class="mr-8 fa-solid fa-cart-plus"></i>
+                                            <span>Thêm vào giỏ hàng</span>
+                                        </div>
+                                        <div class="btn buy" onclick="buyNow()">Mua ngay</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="grid--full-width mt-16 mb-16 bg-white card">
+                        <div class="page-detail__product">
+                            <section class="wrap-infor-detail">
+                                <h2 class="title-detail__product">Mô tả sản phẩm</h2>
+                                <div class="mt-30-ml-mr-mb-15">
+                                    <div class="wrap-desc-detail">
+                                        <p id="product-description" class="m-0"></p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End main -->
+        <div class="newsletter-section">
+            <div class="container-fluid">
+                <div class="wrapbox-newsletter">
+                    <div class="newsletter-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2L11 13"></path>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                        </svg>
+                        <h3>Đăng ký nhận bản tin</h3>
+                    </div>
+                    <p class="newsletter-description">Để nhận các thông tin mới từ TTG cũng như các chương trình khuyến mãi</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Vui lòng nhập email của bạn..." />
+                        <button>ĐĂNG KÝ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Begin footer -->
+        <footer class="footer">
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            <div class="header__logo">
+                                <!-- <a href="">
+                                    <h3 class="header__logo-text">Lougi Shop</h3>
+                                </a> -->
+                                <a href="./home.html">
+                                    <img class="header__logo-img" src="assets/img/product/pc/logo.webp" alt="LougiShop">
+                                </a>
+                        </h3>
+                        <p class="contact-list">
+                            <b>Điện thoại:</b>
+                            <a href="tel:0963541319">0963 541 319</a>
+                            <br>
+                            <b>Email:</b>
+                            <a href="mailto:anhtuanhym204@gmail.com">longhuhe1@gmail.com</a>
+                            <br>
+                            <b>Địa chỉ:</b>
+                            Nhân hòa - Mỹ Hào - Hưng Yên
+                        </p>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Về TTGShop
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Giới thiệu</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Sản phẩm</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Liên hệ</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Điều khoản</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Bảo mật</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Danh mục
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">PC Gaming - Máy tính chơi game</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">PC Workstation</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Màn hình</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Linh kiện máy tính</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Chăm sóc khách hàng
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Trung tâm trợ giúp</a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">Hướng dẫn mua hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">
+                            Theo dõi chúng tôi trên
+                        </h3>
+                        <ul class="footer-list">
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">
+                                    <i class="footer-icon fa-brands fa-square-facebook"></i>
+                                    Facebook
+                                </a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">
+                                    <i class="footer-icon fa-brands fa-square-instagram"></i>
+                                    Instagram
+                                </a>
+                            </li>
+                            <li class="footer-item">
+                                <a href="" class="footer-item__link">
+                                    <i class="footer-icon fa-brands fa-telegram"></i>
+                                    Telegram
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid__row">
+                    <div class="footer-copyright">
+                        © 2024 TTGShopTTGShop. Nền tảng mua bán công nghệ hàng đầu Việt Nam. Được thiết kế và phát triển bởi Nguyen Long
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
+
+<script src="./assets/js/navbarUser.js"></script>
+<script src="./assets/js/productdetails.js"></script>

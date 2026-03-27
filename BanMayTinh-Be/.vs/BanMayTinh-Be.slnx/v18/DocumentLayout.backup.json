@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|e:\\\u0111\u1ED3 \u00E1n 3 full_stack\\banmaytinh-be\\banmaytinh\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|solutionrelative:banmaytinh\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|e:\\\u0111\u1ED3 \u00E1n 3 full_stack\\banmaytinh-be\\banmaytinh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|solutionrelative:banmaytinh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|e:\\\u0111\u1ED3 \u00E1n 3 full_stack\\banmaytinh-be\\banmaytinh\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|solutionrelative:banmaytinh\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|e:\\\u0111\u1ED3 \u00E1n 3 full_stack\\banmaytinh-be\\banmaytinh\\banmaytinhdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DF75A32-641B-E0E1-74E8-30A6DE295F5D}|BanMayTinh\\BanMayTinh.csproj|solutionrelative:banmaytinh\\banmaytinhdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "BanMayTinh\\Properties\\launchSettings.json",
+              "ToolTip": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\Properties\\launchSettings.json",
+              "RelativeToolTip": "BanMayTinh\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-16T19:04:39.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BanMayTinhDbContext.cs",
+              "DocumentMoniker": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\BanMayTinhDbContext.cs",
+              "RelativeDocumentMoniker": "BanMayTinh\\BanMayTinhDbContext.cs",
+              "ToolTip": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\BanMayTinhDbContext.cs",
+              "RelativeToolTip": "BanMayTinh\\BanMayTinhDbContext.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T19:00:36.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\Program.cs",
+              "RelativeDocumentMoniker": "BanMayTinh\\Program.cs",
+              "ToolTip": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\Program.cs",
+              "RelativeToolTip": "BanMayTinh\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T14:27:36.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\appsettings.json",
+              "RelativeDocumentMoniker": "BanMayTinh\\appsettings.json",
+              "ToolTip": "E:\\\u0110\u1ED3 \u00C1n 3 Full_Stack\\BanMayTinh-Be\\BanMayTinh\\appsettings.json",
+              "RelativeToolTip": "BanMayTinh\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-16T14:12:38.489Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
